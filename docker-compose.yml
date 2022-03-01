@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: mariadb:10.5
+    container_name: agenda-petshop
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agenda-petshop
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
+    container_name: agenda-petshop_adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - backend
+    depends_on:
+      - "db"
+
+networks:
+  backend:
+    driver: bridge
+    name: dev_network
