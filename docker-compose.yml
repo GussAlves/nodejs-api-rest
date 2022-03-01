@@ -4,11 +4,11 @@ services:
 
   db:
     image: mariadb:10.5
-    container_name: agenda-petshop
+    container_name: banco_mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: agenda-petshop
+      MYSQL_DATABASE: agenda-pet
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     volumes:
@@ -20,7 +20,7 @@ services:
 
   adminer:
     image: adminer
-    container_name: agenda-petshop_adminer
+    container_name: mysql_adminer
     restart: always
     ports:
       - 8081:8080
@@ -32,4 +32,4 @@ services:
 networks:
   backend:
     driver: bridge
-    name: dev_network
+    name: api_network
