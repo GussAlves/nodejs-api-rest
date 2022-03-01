@@ -6,7 +6,6 @@ module.exports = app => {
             .send('Você está na rota de atendimentos utilizando método GET')
     });
 
-
     app.post('/atendimentos', (req, res) => {
         console.log('Atendimento enviado')
         const atendimento = req.body;
