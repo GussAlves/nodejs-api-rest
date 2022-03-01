@@ -10,7 +10,19 @@ class Atendimento {
             } else {
                 console.log(resultado);
             }
-        });
+        }); 
+    }
+
+    exibirTodos() {
+        const sql = 'select * from atendimentos';
+
+        conexao.query(sql, (erro, resultado) => {
+            if (erro) {
+                console.log(erro);
+            } else {
+                return resultado;
+            }
+        })
     }
 }
 
