@@ -1,4 +1,3 @@
-const { conexao } = require('../infraestrutura/Tabela');
 const Atendimento = require('../models/atendimentos');
 
 module.exports = app => {

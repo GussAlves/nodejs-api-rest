@@ -7,7 +7,6 @@ conexao.connect(erro => {
         throw new Error(erro);
     } else {
         console.log('Conexão realizada com mysql:agenda-petshop');
-
         Tabela.init(conexao); // criando tabelas
             
         const app = customExpress();
