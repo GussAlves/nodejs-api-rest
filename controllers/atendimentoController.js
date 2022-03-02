@@ -1,3 +1,4 @@
+const { conexao } = require('../infraestrutura/Tabela');
 const Atendimento = require('../models/atendimentos');
 
 module.exports = app => {
@@ -18,10 +19,16 @@ module.exports = app => {
         Atendimento.adiciona(atendimento, res);
     })
 
+    //atualização
     app.patch('/atendimentos/:id', (req, res) => {
         const id = parseInt(req.params.id);
         const valores = req.body;
         
         Atendimento.altera(id, valores, res);
+    })
+
+    app.delete('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        Atendimento.excluir(id, res);
     })
 }
