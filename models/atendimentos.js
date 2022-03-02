@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const moment = require('moment');
 const conexao = require('../infraestrutura/conexao');
 
@@ -41,16 +42,29 @@ class Atendimento {
         }
     }
 
-    exibirTodos() {
-        const sql = 'select * from atendimentos';
+    lista(res) {
+        const sql = 'SELECT * FROM ATENDIMENTOS';
 
-        conexao.query(sql, (erro, resultado) => {
+        conexao.query(sql, (erro, resultados) => {
             if (erro) {
-                console.log(erro);
+                res.status(400).json(erro);
             } else {
-                return resultado;
+                res.status(200).json(resultados);
             }
         })
+    }
+
+    buscarPorId(id, res) {
+        const sql = `SELECT * FROM ATENDIMENTOS WHERE ID = ${id}`;
+
+        conexao.query(sql, (erro, resultados) => {
+            const atendimento = resultados[0];
+            if (erro) {
+                res.status(400).json(erro);
+            } else {
+                res.status(200).json(atendimento);
+            }
+        });
     }
 }
 
